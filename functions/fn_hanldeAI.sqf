@@ -62,6 +62,6 @@ if(_finalDist < jtog_hearing) then {
 		};
 
 	} forEach allUnits;
-};
 
-[_units, _unit] spawn jtog_rbu_fnc_sendAI;
+	[_units, _unit] spawn jtog_rbu_fnc_sendAI;
+};

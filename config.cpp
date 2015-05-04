@@ -76,6 +76,7 @@ class CfgVehicles {
 				displayName = "Markername/s";
 				description = "Name of the marker/s in a array";
 				typeName = "STRING";
+		        
 		        class values {
 		            default = "[]";
 		        };
@@ -131,10 +132,18 @@ class CfgVehicles {
 			};
 
 			class MinutesForWalk {
-				displayName 	="Time they patrol";
-				description 	= "How lang the ai will patrol in seconds";
+				displayName 	= "Time they patrol";
+				description 	= "How long the ai will patrol in seconds";
 				typeName		= "NUMBER";
 				defaultValue 	= 60;
+			};
+
+			//Class for number of waypoints
+			class NumberOfWaypoints {
+				displayName		= "Number of waypoints";
+				description		= "How many numbers of waypoints will the ai have";
+				typeName 		= "NUMBER";
+				defaultValue	= 10;
 			};
 
 			//Class for debug infos

@@ -20,6 +20,7 @@ _searchRad 	= _logic getVariable ['SearchRadius', 200];
 _numberAI	= _logic getVariable ['NumberOfAI', 3];
 _AIMode		= _logic getVariable ['AIMode', 'NORMAL'];
 _walkTime 	= _logic getVariable ['MinutesForWalk', 60];
+_waypoints	= _logic getVariable ['NumberOfWaypoints', 10];
 _debug 		= _logic getVariable ['Debug', 0];
 
 //Set debug public
@@ -40,12 +41,14 @@ jtog_searchTerm = _searchRad;
 jtog_AIMode		= _AIMode;
 jtog_inLoop		= 0;
 jtog_walkTime	= _walkTime;
+jtog_numOfWay	= _waypoints;
 publicVariable "jtog_markerNames";
 publicVariable "jtog_hearing";
 publicVariable "jtog_maxAI";
 publicVariable "jtog_AIMode";
 publicVariable "jtog_inLoop";
 publicVariable "jtog_walkTime";
+publicVariable "jtog_numOfWay";
 
 //Call the handle distance between player and marker
 player addEventHandler["Fired", {
