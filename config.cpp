@@ -73,8 +73,12 @@ class CfgVehicles {
 
 			//Class for marker name
 			class MarkerName {
-				displayName = "Markername";
-				description = "Name of the marker";
+				displayName = "Markername/s";
+				description = "Name of the marker/s in a array";
+				typeName = "STRING";
+		        class values {
+		            default = "[]";
+		        };
 			};
 
 			//Class for Radius of hearing
@@ -104,24 +108,23 @@ class CfgVehicles {
 			class AIMode {
 				displayName = "React enemies on fire";
 				description = "How will the enemies react when they hear shoots";
-				typeName 	= "NUMBER";
 
 				class values {
 
 					class Easy {
 						name = "Easy";
-						value = 1;
-						default = 1; 
+						value = "LIMITED";
+						default = "LIMITED"; 
 					};
 
 					class Normal {
 						name = "Normal";
-						value = 2;
+						value = "NORMAL";
 					};
 
 					class Hard {
 						name = "Hard";
-						value = 3;
+						value = "FULL";
 					};
 
 				};
@@ -130,6 +133,7 @@ class CfgVehicles {
 			class MinutesForWalk {
 				displayName 	="Time they patrol";
 				description 	= "How lang the ai will patrol in seconds";
+				typeName		= "NUMBER";
 				defaultValue 	= 60;
 			};
 

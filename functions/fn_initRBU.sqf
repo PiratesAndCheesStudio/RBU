@@ -14,11 +14,11 @@ _activated 	= _this select 2;
 if!(_activated) exitWith {};
 
 //Get the config stuff form the module
-_markerName = _logic getVariable ['MarkerName', ''];
+_markerName = call compile(_logic getVariable ['MarkerName', '[]']);//Because arma has no array type
 _hearing 	= _logic getVariable ['Hearingrange', 3000];
 _searchRad 	= _logic getVariable ['SearchRadius', 200];
 _numberAI	= _logic getVariable ['NumberOfAI', 3];
-_AIMode		= _logic getVariable ['AIMode', 1];
+_AIMode		= _logic getVariable ['AIMode', 'NORMAL'];
 _walkTime 	= _logic getVariable ['MinutesForWalk', 60];
 _debug 		= _logic getVariable ['Debug', 0];
 
@@ -26,21 +26,21 @@ _debug 		= _logic getVariable ['Debug', 0];
 jtog_debug	= _debug;
 publicVariable "jtog_debug";
 
+//If no marker name leave it!
+if(isNil "_markerName") exitWith { systemChat "JTOG-#RBU ERROR! NO MARKER NAME SET! :(" };
+
 //Say that we now starting all the good stuff
 if(jtog_debug == 1) then { systemChat "JTOG-#RBU starting init....." };
 
-//If no marker name leave it!
-if(_markerName == "") exitWith { systemChat "JTOG-#RBU ERROR! NO MARKER NAME SET! :(" };
-
 //Set public variables
-jtog_markerName = _markerName;
+jtog_markerNames = _markerName;
 jtog_hearing 	= _hearing;
 jtog_maxAI		= _numberAI;
 jtog_searchTerm = _searchRad;
 jtog_AIMode		= _AIMode;
 jtog_inLoop		= 0;
 jtog_walkTime	= _walkTime;
-publicVariable "jtog_markerName";
+publicVariable "jtog_markerNames";
 publicVariable "jtog_hearing";
 publicVariable "jtog_maxAI";
 publicVariable "jtog_AIMode";

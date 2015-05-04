@@ -17,7 +17,9 @@ if(jtog_debug == 1) then { systemChat format["JTOG-#RBU UNIT WILL GO TO %1", _po
 //Saves the current location of the unit
 missionNamespace setVariable['jtog_rbu_last_group_pos', position _unit];
 
+//Get the group of the unit
 _group = group _unit;
 
-//_group addWaypoint[position _player, _radius];
-[_group, _position, _radius] spawn CBA_fnc_taskPatrol;
+//Send the patrol to the position
+//AS_TODO: Number of waypoints in config
+[_group, _position, _radius, 10, "MOVE", "AWARE", "", jtog_AIMode] spawn CBA_fnc_taskPatrol;

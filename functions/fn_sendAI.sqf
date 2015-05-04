@@ -18,7 +18,7 @@ if(count _units == 1) then {
 	_singleAI = _units select 0;
 
 	[_singleAI, round random jtog_searchTerm, position _unit] spawn jtog_rbu_fnc_createWaypoint;
-	[_singleAI] spawn jtog_rbu_fnc_checkSendedAI;
+	[_singleAI, jtog_walkTime] spawn jtog_rbu_fnc_checkSendedAI;
 
 } else {
 	
@@ -38,5 +38,5 @@ if(count _units == 1) then {
 
 	//Create waypoints and watch if they are alive
 	[_leader, round random jtog_searchTerm, position _unit] spawn jtog_rbu_fnc_createWaypoint;
-	[_leader] spawn jtog_rbu_fnc_checkSendedAI;
+	[_leader, jtog_walkTime] spawn jtog_rbu_fnc_checkSendedAI;
 };

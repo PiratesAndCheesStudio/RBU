@@ -5,7 +5,7 @@
  */
 
 //Make marker private
-private ['_marker', '_checkDistanc', '_unit', '_weapon', '_i', '_units'];
+private ['_marker', '_checkDistanc', '_unit', '_weapon', '_i', '_units', '_bestMarker', '_currentMarker'];
 
 //Get values
 _unit 		= _this select 0;
@@ -13,11 +13,28 @@ _weapon 	= _this select 1;
 _i 			= 0;
 _units 		= [];
 
-//Get the distance between player and marker
-_dist = getMarkerPos jtog_markerName distance _unit; 
+//check wich given marke is closer and send them there
+{	
+	if(isNil "_bestMarker") then {
+	
+		_bestMarker = getMarkerPos _x distance _unit;
+	
+	} else {
+		
+		_currentMarker = getMarkerPos _x distance _unit;
+
+		if(_currentMarker < _bestMarker) then {
+			_bestMarker = _currentMarker;
+			systemChat format['RUN TO MARKER: %1', _x];
+		};
+
+	};
+	
+} forEach jtog_markerNames;
+
 
 //Round it
-_finalDist = round _dist;
+_finalDist = round _bestMarker;
 
 //DEBUG
 if(jtog_debug == 1) then { systemChat format["JTOG-#RBU: Player: %1", position player] };
