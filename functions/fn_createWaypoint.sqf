@@ -22,4 +22,4 @@ _group = group _unit;
 
 //Send the patrol to the position
 //AS_TODO: Number of waypoints in config
-[_group, _position, _radius, jtog_numOfWay, "MOVE", "AWARE", "", jtog_AIMode] spawn CBA_fnc_taskPatrol;
+[_group, _position, _radius, jtog_numOfWay, "MOVE", "AWARE", "", jtog_AIMode, "", "this spawn CBA_fnc_searchNearby"] spawn CBA_fnc_taskPatrol;

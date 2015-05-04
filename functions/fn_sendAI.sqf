@@ -10,7 +10,7 @@ _units = _this select 0;
 _unit  = _this select 1;
 _i 	   = 0;
 
-systemChat format['AARRAY: %1', count _units];
+//systemChat format['AARRAY: %1', count _units];
 
 //We found only one unit so just seend it
 if(count _units == 1) then {
@@ -29,6 +29,7 @@ if(count _units == 1) then {
 	//Join the leader in the group
 	{
 	  if!(_i == 0) then {
+	  	[_x] join grpNull;
 	  	[_x] join _leader;
 	  };
 
