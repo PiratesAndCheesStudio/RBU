@@ -1,3 +1,4 @@
+#include "\userconfig\1stJTOG\rbu.hpp"; 
 /**
  * @author flaver
  * @copyright flaver (c) 2015
@@ -5,13 +6,16 @@
  */
 
 //Make marker private
-private ['_marker', '_checkDistanc', '_unit', '_weapon', '_i', '_units', '_bestMarker', '_currentMarker', '_usedMarker', '_result'];
+private ['_marker', '_checkDistanc', '_unit', '_i', '_units', '_bestMarker', '_currentMarker', '_usedMarker', '_result', '_arr'];
 
 //Get values
 _unit 		= _this select 0;
-_weapon 	= _this select 1;
 _i 			= 0;
 _units 		= [];
+_arr 		= jtog_rbu_unit_blacklist;
+
+//First check weapon
+[_unit] spawn jtog_rbu_fnc_checkWeapon;
 
 //check wich given marke is closer and send them there
 {	
@@ -53,16 +57,17 @@ if(_finalDist < jtog_hearing) then {
 		if!(_i == jtog_maxAI) then {
 			//Check for AI
 			if!(isPlayer _x) then {
-				//Check distance
-				_result = getMarkerPos _usedMarker distance _x;
-				_result = round _result;
-				if(_result < jtog_hearing) then {
-					//save the unit in a array
-					_units set [count _units, _x];
+				if!(typeof _x in _arr) then {
+					//Check distance
+					_result = getMarkerPos _usedMarker distance _x;
+					_result = round _result;
+					if(_result < jtog_hearing) then {
+						//save the unit in a array
+						_units set [count _units, _x];
 
-					_i = _i + 1;
+						_i = _i + 1;
+					};
 				};
-
 			};
 
 		};

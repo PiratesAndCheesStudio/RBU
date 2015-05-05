@@ -53,7 +53,7 @@ publicVariable "jtog_numOfWay";
 //Call the handle distance between player and marker
 player addEventHandler["Fired", {
 	if(jtog_inLoop == 0) then {
-		[_this select 0, _this select 1] spawn jtog_rbu_fnc_hanldeAI;
+		[_this select 0] spawn jtog_rbu_fnc_hanldeAI;
 	};
 }]; 
 
