@@ -71,7 +71,7 @@ class CfgVehicles {
 		isGlobal	= 1;
 
 		class Arguments {
-
+			
 			//Class for marker name
 			class MarkerName {
 				displayName = "Markername/s";

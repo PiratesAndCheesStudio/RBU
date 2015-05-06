@@ -56,7 +56,7 @@ if(_finalDist < jtog_hearing) then {
 		//Check the loop
 		if!(_i == jtog_maxAI) then {
 			//Check for AI
-			if!(isPlayer _x) then {
+			if(!isPlayer _x && (side _x) != civilian && (side _x) != (side player)) then {
 				if!(typeof _x in _arr) then {
 					//Check distance
 					_result = getMarkerPos _usedMarker distance _x;
