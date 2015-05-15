@@ -83,6 +83,17 @@ class CfgVehicles {
 		        };
 			};
 
+			//Class for marker name
+			class BlacklistAI {
+				displayName = "Blacklist of AIs";
+				description = "Names of AIs that not will be used for group";
+				typeName = "STRING";
+		        
+		        class values {
+		            default = "[]";
+		        };
+			};
+
 			//Class for Radius of hearing
 			class Hearingrange {
 				displayName = "Hearingrange of AI";

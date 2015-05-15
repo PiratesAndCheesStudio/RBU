@@ -6,16 +6,17 @@
  */
 
 //Make marker private
-private ['_marker', '_checkDistanc', '_unit', '_i', '_units', '_bestMarker', '_currentMarker', '_usedMarker', '_result', '_arr'];
+private ['_marker', '_checkDistanc', '_unit', '_i', '_units', '_bestMarker', '_currentMarker', '_usedMarker', '_result', '_hearing', '_arr'];
 
 //Get values
 _unit 		= _this select 0;
 _i 			= 0;
 _units 		= [];
 _arr 		= jtog_rbu_unit_blacklist;
+_hearing 	= jtog_hearing;
 
-//First check weapon
-[_unit] spawn jtog_rbu_fnc_checkWeapon;
+//First check weapon for silancer and ammo
+//[_unit, _hearing] spawn jtog_rbu_fnc_checkWeapon;
 
 //check wich given marke is closer and send them there
 {	
@@ -31,7 +32,6 @@ _arr 		= jtog_rbu_unit_blacklist;
 		if(_currentMarker < _bestMarker) then {
 			_bestMarker = _currentMarker;
 			_usedMarker = _x;
-			systemChat format['RUN TO MARKER: %1', _x];
 		};
 
 	};
@@ -47,7 +47,7 @@ if(jtog_debug == 1) then { systemChat format["JTOG-#RBU: Player: %1", position p
 if(jtog_debug == 1) then { systemChat format["JTOG-#RBU: Unit: %1", position _unit] };
 
 //Check for distance
-if(_finalDist < jtog_hearing) then {
+if(_finalDist < _hearing) then {
 	
 	//Loop through all units
 	//AS_TODO: Check for a better solution
@@ -57,11 +57,11 @@ if(_finalDist < jtog_hearing) then {
 		if!(_i == jtog_maxAI) then {
 			//Check for AI
 			if(!isPlayer _x && (side _x) != civilian && (side _x) != (side player)) then {
-				if!(typeof _x in _arr) then {
+				if!(typeof _x in _arr && typeof _x in jtog_blackList) then {
 					//Check distance
 					_result = getMarkerPos _usedMarker distance _x;
 					_result = round _result;
-					if(_result < jtog_hearing) then {
+					if(_result < _hearing) then {
 						//save the unit in a array
 						_units set [count _units, _x];
 
