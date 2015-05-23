@@ -16,7 +16,7 @@ _i 	   = 0;
 if(count _units == 1) then {
 	_leader = _units select 0;
 } else {
-	
+
 	//Just the first unit is the leader
 	_leader =  _units select 0;
 	[_leader] join grpNull;

@@ -38,6 +38,7 @@ class CfgFunctions {
 			class checkSendedAI;
 			class resetAI;
 			class checkWeapon;
+			class checkAmmo;
 		};
 
 	};
