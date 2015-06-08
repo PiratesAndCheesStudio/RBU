@@ -34,5 +34,5 @@ if(count _units == 1) then {
 };
 
 //Create waypoints and watch if they are alive
-[_leader, round random jtog_searchTerm, position _unit] spawn jtog_rbu_fnc_createWaypoint;
+[_leader, round random jtog_searchTerm, position _unit] call jtog_rbu_fnc_createWaypoint;
 [_leader, jtog_walkTime] spawn jtog_rbu_fnc_checkSendedAI;
