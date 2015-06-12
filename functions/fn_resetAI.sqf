@@ -7,17 +7,35 @@ private ['_position', '_unit', '_i', '_group', '_waypoints'];
 
 _unit = _this select 0;
 _group = group _unit;
-_waypoints = waypoints _group;
+_leader = leader _group;
 _i = 0;
-//systemChat format['%1 waypoints', _waypoints];
+
 _position = missionNamespace getVariable "jtog_rbu_last_group_pos";
 
-//Remove all waypoints
-while{(count _waypoints) > 0} do {
-	deleteWaypoint [_group, _i];
-	_i = _i + 1;
-	sleep 1;
-};
+if(jtog_debug == 1) then { systemChat format["JTOG-#RBU Destroy group with leader: %1", _leader]};
 
-[_unit, 30, _position] spawn jtog_rbu_fnc_createWaypoint;
+//First let all leave the group
+_units = units group _unit;
+{
+
+	[_x] join grpNull;
+
+} forEach _units;
+
+if(jtog_debug == 1) then { systemChat format["JTOG-#RBU Create now new group, they go to: %1", _position]};
+
+//Now lets create a new fresh group
+_i = 0;
+{
+	  if!(_i == 0) then {
+	  	[_x] join grpNull;
+	  	[_x] join _leader;
+	  };
+
+	  _i = _i + 1;
+
+} forEach _units;
+
+//Now send it back
+[_leader, 30, _position] spawn jtog_rbu_fnc_createWaypoint;
 jtog_inLoop = 0;

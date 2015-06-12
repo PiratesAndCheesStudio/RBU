@@ -13,7 +13,8 @@ _ammo		= _this select 1;
 _i 			= 0;
 _units 		= [];
 _hearing 	= jtog_hearing;
-_jtog_rbu_unit_blacklist = [
+
+_unitBlacklist = [
 "B_soldier_M_F",
 "B_Sharpshooter_F",
 "B_Recon_Sharpshooter_F",
@@ -49,9 +50,9 @@ _jtog_rbu_unit_blacklist = [
 ];
 
 //First check weapon for silancer and ammo
-//[_unit, _hearing] spawn jtog_rbu_fnc_checkWeapon;
+_nothingHear = [_unit, _hearing] call jtog_rbu_fnc_checkWeapon;
 
-//if(_nothingHear == 1) then {_hearing = round (_hearing / 100) * 10;};
+if(_nothingHear) then {_hearing = round (_hearing / 100) * 10;};
 
 //check wich given marke is closer and send them there
 {
@@ -92,7 +93,7 @@ if(_finalDist < _hearing) then {
 		if!(_i == jtog_maxAI) then {
 			//Check for AI
 			if(!isPlayer _x && (side _x) != civilian && (side _x) != (side player)) then {
-				if!(typeof _x in _jtog_rbu_unit_blacklist && typeof _x in jtog_blackList) then {
+				if!(typeof _x in _unitBlacklist && typeof _x in jtog_blackList) then {
 					//Check distance
 					_result = getMarkerPos _usedMarker distance _x;
 					_result = round _result;

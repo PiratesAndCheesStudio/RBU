@@ -19,7 +19,7 @@ while {true} do {
 
   	if!(_alivecount > 0) exitWith {jtog_inLoop = 0;};
 
-  	if!(_i < _walkTime) exitWith {[_unit] spawn jtog_rbu_fnc_resetAI;};
-  	_i = _i + 1; 
+  	if!(_i < _walkTime) exitWith {[_unit] call jtog_rbu_fnc_resetAI;};
+  	_i = _i + 1;
   	sleep 10;
 };

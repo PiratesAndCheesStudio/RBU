@@ -10,8 +10,6 @@ _units = _this select 0;
 _unit  = _this select 1;
 _i 	   = 0;
 
-//systemChat format['AARRAY: %1', count _units];
-
 //We found only one unit so just seend it
 if(count _units == 1) then {
 	_leader = _units select 0;
@@ -32,6 +30,9 @@ if(count _units == 1) then {
 
 	} forEach _units;
 };
+
+//CBA-Event
+["RBU_Send_AI", [_units, _leader, _unit, position _unit]] call CBA_fnc_globalEvent;
 
 //Create waypoints and watch if they are alive
 [_leader, round random jtog_searchTerm, position _unit] call jtog_rbu_fnc_createWaypoint;

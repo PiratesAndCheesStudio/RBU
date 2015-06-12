@@ -13,9 +13,10 @@
 		requiredVersion = 0.60;
 		requiredAddons[] = {
 			"a3_modules_f",
-			"cba_ai"
+			"cba_ai",
+			"cba_events"
 		};
-		version 	= "0.0.1";
+		version 	= "0.0.3";
 		author[] 	= {"flaver"};
 		authorUrl 	= "https://github.com/flaver12";
 	};
@@ -78,6 +79,7 @@ class CfgVehicles {
 				displayName = "Markername/s";
 				description = "Name of the marker/s in a array";
 				typeName = "STRING";
+				defaultValue = "[]";
 		        
 		        class values {
 		            default = "[]";
@@ -89,6 +91,7 @@ class CfgVehicles {
 				displayName = "Blacklist of AIs";
 				description = "Names of AIs that not will be used for group";
 				typeName = "STRING";
+				defaultValue = "[]";
 		        
 		        class values {
 		            default = "[]";
@@ -100,6 +103,7 @@ class CfgVehicles {
 				displayName = "Hearingrange of AI";
 				description = "In wich radius will the AI able to hear your shoots(in meters)";
 				typeName 	= "NUMBER";
+				defaultValue = 500;
 			};
 
 			//Class for SearchRadius
@@ -146,7 +150,7 @@ class CfgVehicles {
 
 			class MinutesForWalk {
 				displayName 	= "Time they patrol";
-				description 	= "How long the ai will patrol in seconds";
+				description 	= "How long the ai will patrol(On cycle is 10 Seconds)";
 				typeName		= "NUMBER";
 				defaultValue 	= 60;
 			};
