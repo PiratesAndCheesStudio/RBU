@@ -32,6 +32,9 @@ class CfgFunctions {
 			class initSupport;
 			class attachGear;
 			class sendToPosition;
+			class checkDistance;
+			class spawnMortal;
+			
 		};
 
 	};

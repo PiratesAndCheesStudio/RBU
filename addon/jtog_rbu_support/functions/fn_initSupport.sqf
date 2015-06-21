@@ -5,7 +5,7 @@
  */
 
 //private stuff
-private ['_leader', '_i'];
+private ['_leader', '_i', '_position', '_group'];
 
 
 //Module for the loadouts
@@ -27,17 +27,16 @@ if (isNil "_units" || count _units == 1) exitWith {systemChat "#RBU-SUPPORT: NO 
 //Make a basic setup for the group
 {
 
-	systemChat format ["%1", _x];
-
-	_x join grpNull;
+	[_x] join grpNull;
 
 	if(_i == 0) then {
 
 		_leader = _x;
+		_i = _i + 1;
 
 	} else {
 
-		_x join _leader;
+	  	[_x] join _leader;
 
 	};
 
@@ -46,5 +45,7 @@ if (isNil "_units" || count _units == 1) exitWith {systemChat "#RBU-SUPPORT: NO 
 
 //AS_TODO: Add here the gear and vehicle stuff
 
+_position = getMarkerPos _position;
+_group = group _leader;
 //Send the group to the position
-[group _leader, getMarkerPos _position] spawn jtog_rbu_support_sendToPosition;
+[_group, _position] spawn jtog_rbu_support_fnc_sendToPosition;

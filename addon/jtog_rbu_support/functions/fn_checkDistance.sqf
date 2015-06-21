@@ -15,7 +15,17 @@ while {_doLoop} do {
 	if((leader _group distance _positionToGo) <= 500) then {
 
 		_doLoop = false;
-		systemChat format ["Im there and my distance is %1", leader _group distance _positionToGo]
+		systemChat format ["Im there and my distance is %1", leader _group distance _positionToGo];
+
+		//Remove waypoints
+		_units = units _group;
+		{
+
+			[_x] join grpNull;
+
+		} forEach _units;
+
+		[position leader _group] call jtog_rbu_support_fnc_spawnMortal;
 
 	};
 
