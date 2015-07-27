@@ -17,6 +17,8 @@ while {_doLoop} do {
 		_doLoop = false;
 		systemChat format ["Im there and my distance is %1", leader _group distance _positionToGo];
 
+		[position leader _group, leader _group] call jtog_rbu_support_fnc_spawnMortal;
+
 		//Remove waypoints
 		_units = units _group;
 		{
@@ -24,8 +26,6 @@ while {_doLoop} do {
 			[_x] join grpNull;
 
 		} forEach _units;
-
-		[position leader _group] call jtog_rbu_support_fnc_spawnMortal;
 
 	};
 

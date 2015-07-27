@@ -8,14 +8,14 @@
 		isGlobal	= 1;
 
 		class Arguments {
-			
+
 			//Class for marker name
 			class MarkerName {
 				displayName = "Markername/s";
 				description = "Name of the marker/s in a array";
 				typeName = "STRING";
 				defaultValue = "[]";
-		        
+
 		        class values {
 		            default = "[]";
 		        };
@@ -27,11 +27,24 @@
 				description = "Names of AIs that not will be used for group";
 				typeName = "STRING";
 				defaultValue = "[]";
-		        
+
 		        class values {
 		            default = "[]";
 		        };
 			};
+
+			//Class for marker name
+			class BlacklistAIGroups {
+				displayName = "Blacklist of AI groups";
+				description = "Just type the names of the group in the array and they will not be used";
+				typeName = "STRING";
+				defaultValue = "[]";
+
+		        class values {
+		            default = "[]";
+		        };
+			};
+
 
 			//Class for Radius of hearing
 			class Hearingrange {
@@ -67,7 +80,7 @@
 					class Easy {
 						name = "Easy";
 						value = "LIMITED";
-						default = "LIMITED"; 
+						default = "LIMITED";
 					};
 
 					class Normal {

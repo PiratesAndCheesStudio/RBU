@@ -31,7 +31,7 @@ class CfgFunctions {
 
 		//Class how defines all functions as empty classes
 		class jtog_rbu {
-			file = "\jtog_rbu\functions";
+			file = "functions";
 			class initRBU;
 			class hanldeAI;
 			class createWaypoint;

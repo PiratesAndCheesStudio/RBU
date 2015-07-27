@@ -14,8 +14,9 @@ _activated 	= _this select 2;
 if!(_activated) exitWith {};
 
 //Get the config stuff form the module
-_markerName = call compile(_logic getVariable ['MarkerName', '[]']);//Because arma has no array type
+_markerName 	= call compile(_logic getVariable ['MarkerName', '[]']);//Because arma has no array type
 _blackList 	= call compile(_logic getVariable ['BlacklistAI', '[]']);//Because arma has no array type
+_blackListGroup = call compile(_logic getVariable ['BlacklistAI', '[]']);//Because arma has no array type
 _hearing 	= _logic getVariable ['Hearingrange', 3000];
 _searchRad 	= _logic getVariable ['SearchRadius', 200];
 _numberAI	= _logic getVariable ['NumberOfAI', 3];
@@ -37,11 +38,12 @@ if(jtog_debug == 1) then { systemChat "JTOG-#RBU starting init....." };
 //Set public variables
 jtog_markerNames 	= _markerName;
 jtog_blackList		= _blackList;
+jtog_blackListGroup	= _blackListGroup;
 jtog_hearing 		= _hearing;
-jtog_maxAI			= _numberAI;
+jtog_maxAI		= _numberAI;
 jtog_searchTerm 	= _searchRad;
-jtog_AIMode			= _AIMode;
-jtog_inLoop			= 0;
+jtog_AIMode		= _AIMode;
+jtog_inLoop		= 0;
 jtog_walkTime		= _walkTime;
 jtog_numOfWay		= _waypoints;
 publicVariable "jtog_markerNames";

@@ -7,9 +7,9 @@
 #==============================#
 
 ToolPath = "D:/Steam/steamapps/common/Arma 3 Tools"
-AddonDir = "P:/Addons/jtog_rbu/addon"
-BuildPath = "D:/Steam/steamapps/common/Arma 3/@RBU/AddOns/"
-IncludePath = "P:/Addons/jtog_rbu/scripts/include.txt"
+AddonDir = "P:/Addons/jtog_hunger_buddy/code"
+BuildPath = "D:/Steam/steamapps/common/Arma 3/@HungerBuddy/AddOns/"
+IncludePath = "P:/Addons/jtog_hunger_buddy/devTools/include.txt"
 
 #==============================#
 #			DONT TOUCH		   #
