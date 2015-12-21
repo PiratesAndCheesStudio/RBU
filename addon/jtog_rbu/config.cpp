@@ -36,10 +36,9 @@ class CfgFunctions {
 			class hanldeAI;
 			class createWaypoint;
 			class sendAI;
-			class checkSendedAI;
+			class checkSentAI;
 			class resetAI;
 			class checkWeapon;
-			class checkAmmo;
 		};
 
 	};
@@ -67,3 +66,10 @@ class CfgVehicles {
 
 };
 
+class Extended_FiredBIS_EventHandlers {
+    class CAManBase {
+        class JTOG_RBU {
+            firedBIS = "_this call jtog_rbu_fnc_hanldeAI;"
+        };
+    };
+};

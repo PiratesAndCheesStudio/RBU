@@ -6,24 +6,22 @@
 
 //Module for the loadouts
 //variables of the module
-_logic 		= _this select 0;
-_units 		= _this select 1;
-_activated 	= _this select 2;
+params ["_logic", "_units", "_activated"];
 
 //Activated
-if!(_activated) exitWith {};
+if !(_activated) exitWith {};
 
 //Get the config stuff form the module
-_markerName 	= call compile(_logic getVariable ['MarkerName', '[]']);//Because arma has no array type
-_blackList 	= call compile(_logic getVariable ['BlacklistAI', '[]']);//Because arma has no array type
-_blackListGroup = call compile(_logic getVariable ['BlacklistAI', '[]']);//Because arma has no array type
-_hearing 	= _logic getVariable ['Hearingrange', 3000];
-_searchRad 	= _logic getVariable ['SearchRadius', 200];
-_numberAI	= _logic getVariable ['NumberOfAI', 3];
-_AIMode		= _logic getVariable ['AIMode', 'NORMAL'];
-_walkTime 	= _logic getVariable ['MinutesForWalk', 60];
-_waypoints	= _logic getVariable ['NumberOfWaypoints', 10];
-_debug 		= _logic getVariable ['Debug', 0];
+private _markerName 	= call compile(_logic getVariable ['MarkerName', '[]']);//Because arma has no array type
+private _blackList 	= call compile(_logic getVariable ['BlacklistAI', '[]']);//Because arma has no array type
+private _blackListGroup = call compile(_logic getVariable ['BlacklistAI', '[]']);//Because arma has no array type
+private _hearing 	= _logic getVariable ['Hearingrange', 3000];
+private _searchRad 	= _logic getVariable ['SearchRadius', 200];
+private _numberAI	= _logic getVariable ['NumberOfAI', 3];
+private _AIMode		= _logic getVariable ['AIMode', 'NORMAL'];
+private _walkTime 	= _logic getVariable ['MinutesForWalk', 60];
+private _waypoints	= _logic getVariable ['NumberOfWaypoints', 10];
+private _debug 		= _logic getVariable ['Debug', 0];
 
 //Set debug public
 jtog_debug	= _debug;
@@ -55,13 +53,5 @@ publicVariable "jtog_inLoop";
 publicVariable "jtog_walkTime";
 publicVariable "jtog_numOfWay";
 
-//Call the handle distance between player and marker
-player addEventHandler["Fired", {
-	if(jtog_inLoop == 0) then {
-		[_this select 0, _this select 4] spawn jtog_rbu_fnc_hanldeAI;
-	};
-}];
-
 //Give feedback if its done!
 if(jtog_debug == 1) then { systemChat "JTOG-#RBU IS NOW READY TO GO STEIL!!" };
-

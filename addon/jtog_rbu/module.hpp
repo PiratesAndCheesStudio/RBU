@@ -16,9 +16,9 @@
 				typeName = "STRING";
 				defaultValue = "[]";
 
-		        class values {
-		            default = "[]";
-		        };
+				class values {
+					default = "[]";
+				};
 			};
 
 			//Class for marker name
@@ -28,9 +28,9 @@
 				typeName = "STRING";
 				defaultValue = "[]";
 
-		        class values {
-		            default = "[]";
-		        };
+				class values {
+					default = "[]";
+				};
 			};
 
 			//Class for marker name
@@ -40,9 +40,9 @@
 				typeName = "STRING";
 				defaultValue = "[]";
 
-		        class values {
-		            default = "[]";
-		        };
+				class values {
+					default = "[]";
+				};
 			};
 
 
