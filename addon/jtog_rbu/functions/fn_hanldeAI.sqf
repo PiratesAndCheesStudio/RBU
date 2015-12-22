@@ -10,7 +10,9 @@ private ["_units", "_unit", "_i", "_hearing", "_unitBlacklist", "_nothingHear", 
 params ["_unit", "", "", "", "_ammo"];
 
 if !(isPlayer _unit || (jtog_inLoop == 0)) exitWith {};
-
+if !(isServer) exitWith {
+	_this remoteExec ["jtog_rbu_fnc_hanldeAI", 2, false];
+};
 _i = 0;
 _units = [];
 _hearing = jtog_hearing;
@@ -75,8 +77,10 @@ if(_nothingHear) then {_hearing = round (_hearing / 100) * 10;};
 _finalDist = floor(_bestMarker);
 
 //DEBUG
-if (jtog_debug == 1) then { systemChat format["JTOG-#RBU: Player: %1", position player] };
-if (jtog_debug == 1) then { systemChat format["JTOG-#RBU: Unit: %1", position _unit] };
+if (jtog_debug) then {
+	systemChat format["JTOG-#RBU: Player: %1", position player];
+	systemChat format["JTOG-#RBU: Unit: %1", position _unit];
+};
 
 //Check for distance
 if (_finalDist < _hearing) then {
@@ -84,23 +88,25 @@ if (_finalDist < _hearing) then {
 	//AS_TODO: Check for a better solution
 	{
 		//Check the loop
-		if !(_forEachIndex == jtog_maxAI) then {
+		if !(count _units >= jtog_maxAI) then {
+			_leader = leader _x;
 			//Check for AI
-			if (!isPlayer _x && {(side _x) != civilian} && {side _x != playerside}) then {
-				if !(typeof _x in _unitBlacklist) then {
+			if (!isPlayer _leader && {(side _leader) != civilian} && {side _leader != playerside}) then {
+				if !(typeof _leader in _unitBlacklist) then {
 					//Check distance
-					_result = (getMarkerPos _usedMarker) distance _x;
+					_result = (getMarkerPos _usedMarker) distance _leader;
 					if (_result < _hearing) then {
 						//push the unit in a array
-						_units pushBack _x;
+						_units pushBack units (group _leader);
+						_groups pushBack _leader;
 					};
 				};
 			};
 		};
 		nil
-	} forEach allUnits;
+	} forEach allGroups;
 
 	if !(_units isEqualTo []) then {
-		[_units, _unit] call jtog_rbu_fnc_sendAI;
+		[_groups, _unit] call jtog_rbu_fnc_sendAI;
 	};
 };
