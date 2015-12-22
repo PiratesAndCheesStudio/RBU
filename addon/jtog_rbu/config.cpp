@@ -47,11 +47,12 @@ class CfgFunctions {
 
 //Define our own category
 class CfgFactionClasses {
+
 	//Set up for the category
 	class JTOG {
 		displayName="1st JTOG";
 		priority = 0.1;
-		side = 7;
+    	side = 7;
 	};
 };
 
@@ -66,9 +67,9 @@ class CfgVehicles {
 };
 
 class Extended_FiredBIS_EventHandlers {
-	class CAManBase {
-		class JTOG_RBU {
-			firedBIS = "_this call jtog_rbu_fnc_hanldeAI;"
-		};
-	};
+    class CAManBase {
+        class JTOG_RBU {
+            firedBIS = "_this call jtog_rbu_fnc_hanldeAI;"
+        };
+    };
 };

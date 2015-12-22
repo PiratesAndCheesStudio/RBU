@@ -24,14 +24,14 @@ private _waypoints	= _logic getVariable ['NumberOfWaypoints', 10];
 private _debug 		= _logic getVariable ['Debug', 0];
 
 //Set debug public
-jtog_debug	= _debug isEqualTo 1;
+jtog_debug	= _debug;
 publicVariable "jtog_debug";
 
 //If no marker name leave it!
 if(isNil "_markerName") exitWith { systemChat "JTOG-#RBU ERROR! NO MARKER NAME SET! :(" };
 
 //Say that we now starting all the good stuff
-if(jtog_debug) then { systemChat "JTOG-#RBU starting init....." };
+if(jtog_debug == 1) then { systemChat "JTOG-#RBU starting init....." };
 
 //Set public variables
 jtog_markerNames 	= _markerName;
@@ -54,4 +54,4 @@ publicVariable "jtog_walkTime";
 publicVariable "jtog_numOfWay";
 
 //Give feedback if its done!
-if(jtog_debug) then { systemChat "JTOG-#RBU IS NOW READY TO GO STEIL!!" };
+if(jtog_debug == 1) then { systemChat "JTOG-#RBU IS NOW READY TO GO STEIL!!" };
