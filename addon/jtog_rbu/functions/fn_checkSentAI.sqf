@@ -9,11 +9,12 @@ params ["_unit", "_walkTime"];
 	params ["_args", "_idPFH"];
 	_args params ["_i", "_unit", _walkTime];
 	jtog_inLoop = 1;
-
+	publicVariable "jtog_inLoop";
 	private _alivecount = ({alive _x} count units _unit);
 
 	if!(_alivecount > 0) exitWith {
 		jtog_inLoop = 0;
+		publicVariable "jtog_inLoop";
 		[_idPFH] call CBA_fnc_removePerFrameHandler;
 	};
 
