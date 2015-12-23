@@ -1,24 +1,34 @@
-//Create a new module
+
+//Define the module
+class CfgVehicles {
+
+	//Wrapper for base module
+	class Module_F;
+
+	//Create a new module
 	class jtog_ModuleRBU: Module_F {
-		author 		= "flaver";
+		author 		  = "flaver";
 		category  	= "JTOG";
 		displayName	= "#RUNSBYUS INIT";
-		function 	= "jtog_rbu_fnc_initRBU";
-		scope		= 2;
-		isGlobal	= 1;
+		function 	  = QFUNC(module);
+		scope		    = 2;
+		isGlobal	  = 1;
 
 		class Arguments {
+
+			class enabled {
+				displayName = "Enabled";
+				description = "";
+				typeName 	= "BOOL";
+				defaultValue = 0;
+			};
 
 			//Class for marker name
 			class MarkerName {
 				displayName = "Markername/s";
 				description = "Name of the marker/s in a array";
 				typeName = "STRING";
-				defaultValue = "[]";
-
-				class values {
-					default = "[]";
-				};
+				defaultValue = "";
 			};
 
 			//Class for marker name
@@ -26,11 +36,7 @@
 				displayName = "Blacklist of AIs";
 				description = "Names of AIs that not will be used for group";
 				typeName = "STRING";
-				defaultValue = "[]";
-
-				class values {
-					default = "[]";
-				};
+				defaultValue = "";
 			};
 
 			//Class for marker name
@@ -38,11 +44,7 @@
 				displayName = "Blacklist of AI groups";
 				description = "Just type the names of the group in the array and they will not be used";
 				typeName = "STRING";
-				defaultValue = "[]";
-
-				class values {
-					default = "[]";
-				};
+				defaultValue = "";
 			};
 
 
@@ -115,26 +117,9 @@
 			class Debug {
 				displayName = "Debug";
 				description = "Will output some debug infos";
-				typeName 	= "NUMBER";
-
-				class values {
-
-					class True {
-						name = "True";
-						value = 1;
-						default = 1;
-
-					};
-
-					class False {
-						name = "False";
-						value = 0;
-					};
-
-				};
-
+				typeName 	= "BOOL";
+				defaultValue = 0;
 			};
-
 		};
-
 	};
+};
