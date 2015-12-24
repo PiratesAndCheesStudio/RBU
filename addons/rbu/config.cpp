@@ -30,7 +30,7 @@ class CfgFactionClasses {
 	class JTOG {
 		displayName="1st JTOG";
 		priority = 0.1;
-    side = 7;
+        side = 7;
 	};
 
 };

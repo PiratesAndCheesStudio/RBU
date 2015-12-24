@@ -23,4 +23,8 @@ private _silencer = switch (_weapon) do {
     case (handgunWeapon _unit): {(handgunWeapon _unit) select 0};
     default {""};
 };
-_silencer != ""
+
+if (_silencer != "") exitWith {
+    true
+};
+false

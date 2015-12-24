@@ -22,7 +22,7 @@ if !(isPlayer _unit && GVAR(enabled)) exitWith {};
 
 private _useCoefOnHearing = _unit call FUNC(checkWeapon);
 
-if(_useCoefOnHearing) then {_hearing = round (GVAR(hearing) * 10;)};
+if(_useCoefOnHearing) then {_hearing = round (GVAR(hearing) * 10);};
 
 //Check from witch marker we fired
 {
@@ -32,8 +32,7 @@ if(_useCoefOnHearing) then {_hearing = round (GVAR(hearing) * 10;)};
 	} else {
 		_currentMarker = getMarkerPos _x distance _unit;
 		if(_currentMarker < _bestMarker) then {
-			_bestMarker = _currentMarker;
-			_usedMarker = _x;
+			_bestMarker = _x;
 		};
 	};
 	nil
@@ -47,9 +46,22 @@ if(_finalDist < GVAR(hearing)) then {
 
     //Loop to allGroups and select the nearest one
     {
-        
 
+        _leader = leader _x;
+
+        //Check now if they can hear the shoot
+        _result = (getMarkerPos _bestMarker) distance _leader;
+        if(_result < GVAR(hearing)) then {
+
+            //AS_TODO: Check for resistance side
+            if({side _leader != playerSide} && {side _leader != civilian}) then {
+                _group = _x;
+            };
+        };
+        nil
     } count allGroups;
 
-
+    if!(_group isEqualTo []) then {
+        [_group, (getPos _unit)] call FUNC(sendAI);
+    };
 };
