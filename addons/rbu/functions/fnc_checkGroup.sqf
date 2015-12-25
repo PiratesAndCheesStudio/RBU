@@ -5,7 +5,7 @@
  * create a new group if needed
  *
  * Arguments:
- * 0: Argument Name <TYPE>
+ * 0: _groups Group
  *
  * Return Value:
  * _group Group
@@ -50,7 +50,26 @@ if (_groupSize > GVAR(numberOfAi)) then {
     _group = group _leader;
 
 } else if (_groupSize < GVAR(numberOfAi)) { //Too small
-    //TODO
+
+    /*
+    If we have a group of 4 units
+    and the missionmaker want only groups of 10 units,
+    we will add 7 units from the second group and will send them to the location of the shoot.
+    */
+    _numbersToAd =  GVAR(numberOfAi) - _groupSize;
+    {
+        if!(_forEachIndex < _numbersToAd) then {
+
+            if(isNil "_leader") then {
+                _leader = leader _group;
+            } else{
+                _x joinSilent _leader;
+            };
+
+        };
+        nil
+    } forEach units _groups[1];
+
 };
 
 _group
