@@ -17,10 +17,12 @@
 
 if !(isServer) exitWith {};
 
-params ["_unit"];
+//Get all needed vars
+params ["_unit", "_weapon"];
+
 if !(isPlayer _unit && GVAR(enabled)) exitWith {};
 
-private _useCoefOnHearing = _unit call FUNC(checkWeapon);
+private _useCoefOnHearing = [_unit, _weapon] call FUNC(checkWeapon);
 
 if(_useCoefOnHearing) then {_hearing = round (GVAR(hearing) * 10);};
 
@@ -39,6 +41,7 @@ if(_useCoefOnHearing) then {_hearing = round (GVAR(hearing) * 10);};
 } count GVAR(markerName);
 
 private _finalDist = floor(_bestMarker);
+private _groups = [];
 
 if(GVAR(debug)) then {}; //Do here some dbug later
 
@@ -55,13 +58,14 @@ if(_finalDist < GVAR(hearing)) then {
 
             //AS_TODO: Check for resistance side
             if({side _leader != playerSide} && {side _leader != civilian}) then {
-                _group = _x;
+                _groups pushBack _x;
             };
         };
         nil
     } count allGroups;
 
-    if!(_group isEqualTo []) then {
+    if!(_groups isEqualTo []) then {
+        _group = _groups call FUNC(checkGroup);
         [_group, (getPos _unit)] call FUNC(sendAI);
     };
 };

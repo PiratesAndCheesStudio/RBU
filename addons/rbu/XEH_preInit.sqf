@@ -5,6 +5,7 @@ ADDON = false;
 PREP(module);
 PREP(fired);
 PREP(checkWeapon);
+PREP(checkGroup);
 
 ADDON = true;
 

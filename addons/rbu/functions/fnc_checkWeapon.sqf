@@ -15,7 +15,7 @@
  * Public: [Yes/No]
  */
 
-param["_unit"];
+param["_unit", "_weapon"];
 
 private _silencer = switch (_weapon) do {
     case (primaryWeapon _unit): {(primaryWeapon _unit) select 0};
