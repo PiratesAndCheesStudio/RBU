@@ -15,12 +15,12 @@
  * Public: [Yes/No]
  */
 
-param["_unit", "_weapon"];
+params["_unit", "_weapon"];
 
 private _silencer = switch (_weapon) do {
-    case (primaryWeapon _unit): {(primaryWeapon _unit) select 0};
-    case (secondaryWeapon _unit): {(secondaryWeapon _unit) select 0};
-    case (handgunWeapon _unit): {(handgunWeapon _unit) select 0};
+    case (primaryWeapon _unit): {(primaryWeaponItems _unit) select 0};
+    case (secondaryWeapon _unit): {(secondaryWeaponItems  _unit) select 0};
+    case (handgunWeapon _unit): {(handgunItems _unit) select 0};
     default {""};
 };
 

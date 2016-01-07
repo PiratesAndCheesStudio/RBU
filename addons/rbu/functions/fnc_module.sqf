@@ -42,4 +42,7 @@ if(GVAR(markerName) isEqualTo []) exitWith {
     };
 };
 
-if(GVAR(debug)) then {JTOG_LOG("RBU init is doen!");};
+if(GVAR(debug)) then {
+    JTOG_LOG("RBU init is doen!");
+    JTOG_LOG_ARG1("These markes will be used ", GVAR(markerName));
+};

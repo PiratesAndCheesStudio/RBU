@@ -19,7 +19,7 @@
 params["_groups"];
 
 //So we will take the first group and start building it form there
-private _group     = _groups[0];
+private _group     = _groups select 0;
 private _groupSize = count _group;
 
 //If we have only one group in the array then go back
@@ -49,7 +49,7 @@ if (_groupSize > GVAR(numberOfAi)) then {
 
     _group = group _leader;
 
-} else if (_groupSize < GVAR(numberOfAi)) { //Too small
+} else { //Too small
 
     /*
     If we have a group of 4 units
@@ -68,7 +68,7 @@ if (_groupSize > GVAR(numberOfAi)) then {
 
         };
         nil
-    } forEach units _groups[1];
+    } forEach units _groups select 1;
 
 };
 
