@@ -24,15 +24,15 @@ if !(isPlayer _unit && GVAR(enabled)) exitWith {};
 
 private _useCoefOnHearing = [_unit, _weapon] call FUNC(checkWeapon);
 private _hearing = GVAR(hearing);
-private _bestMarker = nil;
-private _usedMarker = nil;
+private _bestMarker = "";
+private _usedMarker = "";
 private _groups = [];
 
 if(_useCoefOnHearing) then {_hearing = round ((GVAR(hearing)/100) * 10);};
 
 //Check from witch marker we fired
 {
-    if(isNil "_bestMarker") then {
+    if(_bestMarker isEqualTo "") then {
 		_bestMarker = (getMarkerPos _x) distance _unit;
         _usedMarker = _x;
 	} else {
@@ -67,11 +67,11 @@ if(_bestMarker < _hearing) then {
         _leader = leader _x;
 
         //Check now if they can hear the shoot
-        _result = (getMarkerPos _bestMarker) distance _leader;
+        _result = _bestMarker distance _leader;
         if(_result < GVAR(hearing)) then {
 
             //AS_TODO: Check for resistance side
-            if({side _leader != playerSide} && {side _leader != civilian}) then {
+            if({(side _leader) != (side _unit)} && {(side _leader) != civilian} && {(side _leader) getFriend (side _unit) < 0.6}) then {
                 _groups pushBack _x;
             };
         };
