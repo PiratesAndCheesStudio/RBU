@@ -44,13 +44,13 @@ if (_groupSize > GVAR(numberOfAi)) then {
     and the missionmaker want only groups of 10 units,
     we will add 7 units from the second group and will send them to the location of the shoot.
     */
-    _numbersToAdd =  GVAR(numberOfAi) - _groupSize;
     private _units = units _group;
-    _group = createGroup side _group;
+    _numbersToAdd =  GVAR(numberOfAi) - _groupSize;
+    _group = createGroup (side _group);
     _group2 = (_this select 1) select 1;
     private _units2 = units _group2;
     _units2 resize _numbersToAdd; // @TODO check if -1 is required
-    _units append units _units2;
+    _units append _units2;
     _units joinSilent _group;
 };
 
