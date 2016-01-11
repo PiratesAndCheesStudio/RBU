@@ -21,7 +21,10 @@
 //So we can later modify it
 private _mode = "AWARE";
 
-jtog_rbu_last_group_pos = getPos _group;
+GVAR(jtog_rbu_last_group_pos) = getPos (leader _group);
 
 //Send now the AI!
 [_group, _position, (GVAR(searchRad)), (GVAR(waypoints)), "MOVE", _mode, "", GVAR(aiMode), "", "this spawn CBA_fnc_searchNearby"] call CBA_fnc_taskPatrol;
+
+//Add perFrame EH
+[_group, GVAR(walkTime)] call jtog_rbu_fnc_perFrame;

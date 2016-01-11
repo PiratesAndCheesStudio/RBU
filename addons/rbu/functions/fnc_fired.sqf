@@ -16,6 +16,7 @@
  */
 
 if !(isServer) exitWith {};
+if !(isNil QGVAR(ehIndex)) exitWith {};
 
 //Get all needed vars
 params ["_unit", "_weapon"];
@@ -33,16 +34,16 @@ if(_useCoefOnHearing) then {_hearing = round ((GVAR(hearing)/100) * 10);};
 //Check from witch marker we fired
 {
     if(_bestMarker isEqualTo "") then {
-		_bestMarker = (getMarkerPos _x) distance _unit;
+        _bestMarker = (getMarkerPos _x) distance (getPos _unit);
         _usedMarker = _x;
-	} else {
-		_currentMarker = (getMarkerPos _x) distance _unit;
-		if(_currentMarker < _bestMarker) then {
-			_bestMarker = _currentMarker;
+    } else {
+        _currentMarker = (getMarkerPos _x) distance (getPos _unit);
+        if(_currentMarker < _bestMarker) then {
+            _bestMarker = _currentMarker;
             _usedMarker = _x;
-		};
-	};
-	nil
+        };
+    };
+    nil
 } count GVAR(markerName);
 
 private _groups = [];
@@ -63,26 +64,33 @@ if(_bestMarker < _hearing) then {
 
     //Loop to allGroups and select the nearest one
     {
+        if (!isNull _x || {{alive _x} count units _x != 0}) then {
+            _leader = leader _x;
 
-        _leader = leader _x;
+            //Check now if they can hear the shoot
+            _result = (getMarkerPos _usedMarker) distance (getPos _leader);
+            if (_result < GVAR(hearing)) then {
 
-        //Check now if they can hear the shoot
-        _result = _bestMarker distance _leader;
-        if(_result < GVAR(hearing)) then {
-
-            //AS_TODO: Check for resistance side
-            if({(side _leader) != (side _unit)} && {(side _leader) != civilian} && {(side _leader) getFriend (side _unit) < 0.6}) then {
-                _groups pushBack _x;
+                //AS_TODO: Check for resistance side
+                if ((side _leader) != (side _unit) && (side _leader) != civilian && (side _leader) getFriend (side _unit) < 0.6) then {
+                    _groups pushBack [_result, _x];
+                    //diag_log ["Group found",_x];
+                };
             };
         };
         nil
     } count allGroups;
 
+    _groups sort false; // @Todo check if false or true is here the right option
+
     if(GVAR(debug)) then {
-        JTOG_LOG_ARG1("Group is ", _group);
+        JTOG_LOG_ARG1("Group count: ", _groups);
     };
 
     if!(_groups isEqualTo []) then {
+        if(GVAR(debug)) then {
+            JTOG_LOG("We found a group of heros! Lets do this!");
+        };
         _group = _groups call FUNC(checkGroup);
         [_group, (getPos _unit)] call FUNC(sendAI);
     };

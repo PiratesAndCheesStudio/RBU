@@ -6,6 +6,9 @@ PREP(module);
 PREP(fired);
 PREP(checkWeapon);
 PREP(checkGroup);
+PREP(sendAI);
+PREP(perFrame);
+PREP(resetAI);
 
 ADDON = true;
 
