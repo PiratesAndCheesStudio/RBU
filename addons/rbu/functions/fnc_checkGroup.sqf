@@ -10,10 +10,6 @@
  * Return Value:
  * _group Group
  *
- * Example:
- * ["example"] call ace_[module]_fnc_[functionName]
- *
- * Public: [Yes/No]
  */
 
 //So we will take the first group and start building it form there

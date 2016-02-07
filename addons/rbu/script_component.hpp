@@ -25,6 +25,6 @@
 
 //Custom RBU defines
 #define JTOG_LOG(x) systemChat format["DEBUG-LOG: %1", x]
-#define JTOG_LOG_ARG1(x, arg1) systemChat format["DEBUG-LOG: %1 Arg: %2", x, arg1] 
+#define JTOG_LOG_ARG1(x, arg1) systemChat format["DEBUG-LOG: %1 Arg: %2", x, arg1]
 
 #include "\z\ace\addons\main\script_macros.hpp"

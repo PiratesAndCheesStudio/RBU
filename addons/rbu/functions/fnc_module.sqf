@@ -37,9 +37,7 @@ GVAR(ehIndex)       = nil;
 
 //Check for the markername
 if(GVAR(markerName) isEqualTo []) exitWith {
-    if(GVAR(debug)) then {
-        JTOG_LOG("Empty marker array, rbu will not work!");
-    };
+    JTOG_LOG("Empty marker array, rbu will not work!");
 };
 
 if(GVAR(debug)) then {

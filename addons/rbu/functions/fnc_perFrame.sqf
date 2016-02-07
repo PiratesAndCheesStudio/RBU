@@ -4,15 +4,12 @@
  * PerFrame EH
  *
  * Arguments:
- * 0: Argument Name <TYPE>
+ * 0: _group Group
+ * 1: _walkTime Number
  *
  * Return Value:
- * Return Name <TYPE>
+ * Void
  *
- * Example:
- * ["example"] call ace_[module]_fnc_[functionName]
- *
- * Public: [Yes/No]
  */
 params["_group", "_walkTime"];
 
