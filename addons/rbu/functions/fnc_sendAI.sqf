@@ -4,15 +4,12 @@
  * Will send the group to the needed location on the map!
  *
  * Arguments:
- * 0: Argument Name <TYPE>
+ * 0: _group Group
+ * 1: _position Array
  *
  * Return Value:
- * Return Name <TYPE>
+ * Void
  *
- * Example:
- * ["example"] call ace_[module]_fnc_[functionName]
- *
- * Public: [Yes/No]
  */
 
 //Get params
@@ -21,7 +18,7 @@
 //So we can later modify it
 private _mode = "AWARE";
 
-GVAR(jtog_rbu_last_group_pos) = getPos (leader _group);
+GVAR(last_group_pos) = getPos (leader _group);
 
 //Send now the AI!
 [_group, _position, (GVAR(searchRad)), (GVAR(waypoints)), "MOVE", _mode, "", GVAR(aiMode), "", "this spawn CBA_fnc_searchNearby"] call CBA_fnc_taskPatrol;

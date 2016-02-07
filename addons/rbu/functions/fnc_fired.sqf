@@ -4,15 +4,12 @@
  * Fired EH
  *
  * Arguments:
- * 0: Argument Name <TYPE>
+ * 0: _unit Object
+ * 1: _weapon Object
  *
  * Return Value:
- * Return Name <TYPE>
+ * Void
  *
- * Example:
- * ["example"] call ace_[module]_fnc_[functionName]
- *
- * Public: [Yes/No]
  */
 
 if !(isServer) exitWith {};
@@ -49,6 +46,7 @@ if(_useCoefOnHearing) then {_hearing = round ((GVAR(hearing)/100) * 10);};
 private _groups = [];
 
 if(GVAR(debug)) then {
+    diag_log format["Used markers is %1", _usedMarker];
     JTOG_LOG("RBU will check now if we hear something");
     JTOG_LOG_ARG1("Used player is ", name _unit);
     JTOG_LOG_ARG1("Used markers is ", _usedMarker);
@@ -71,17 +69,16 @@ if(_bestMarker < _hearing) then {
             _result = (getMarkerPos _usedMarker) distance (getPos _leader);
             if (_result < GVAR(hearing)) then {
 
-                //AS_TODO: Check for resistance side
+                //Check if we can use this group
                 if ((side _leader) != (side _unit) && (side _leader) != civilian && (side _leader) getFriend (side _unit) < 0.6) then {
                     _groups pushBack [_result, _x];
-                    //diag_log ["Group found",_x];
                 };
             };
         };
         nil
     } count allGroups;
 
-    _groups sort false; // @Todo check if false or true is here the right option
+    _groups sort true;
 
     if(GVAR(debug)) then {
         JTOG_LOG_ARG1("Group count: ", _groups);

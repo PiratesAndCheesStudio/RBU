@@ -4,15 +4,12 @@
  * Check the weapon for silencer
  *
  * Arguments:
- * 0: Argument Name <TYPE>
+ * 0: _unit Object
+ * 1: _weapon Object
  *
  * Return Value:
- * Return Name <TYPE>
+ * BOOL
  *
- * Example:
- * ["example"] call ace_[module]_fnc_[functionName]
- *
- * Public: [Yes/No]
  */
 
 params["_unit", "_weapon"];

@@ -4,15 +4,10 @@
  * Resets the AI, when the walktime is over
  *
  * Arguments:
- * 0: Argument Name <TYPE>
+ * 0: _group Group
  *
  * Return Value:
- * Return Name <TYPE>
- *
- * Example:
- * ["example"] call ace_[module]_fnc_[functionName]
- *
- * Public: [Yes/No]
+ * Void
  */
 params["_group"];
 
@@ -30,4 +25,4 @@ _units joinSilent _group;
 
 //Send AI back
 //Later task send them back on there original track
-[_group, GVAR(jtog_rbu_last_group_pos), (GVAR(searchRad)), (GVAR(waypoints)), "MOVE", _mode, "", GVAR(aiMode), "", "this spawn CBA_fnc_searchNearby"] call CBA_fnc_taskPatrol;
+[_group, GVAR(last_group_pos), (GVAR(searchRad)), (GVAR(waypoints)), "MOVE", _mode, "", GVAR(aiMode), "", "this spawn CBA_fnc_searchNearby"] call CBA_fnc_taskPatrol;
